@@ -8,3 +8,9 @@ def index(request):
         "entries": util.list_entries()
     })
 
+
+def search(request, name):
+    try:
+        return render(request, f"encyclopedia/{ name.lower() }.html")
+    except:
+        return render(request, "encyclopedia/notexist.html")
