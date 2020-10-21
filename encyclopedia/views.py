@@ -10,14 +10,14 @@ def index(request):
 def search(request):
     if request.method == 'POST':
         entry = request.POST['q']
-        try:
-            return render(request, f"encyclopedia/{entry}.html")
-        except:
+        if entry.upper() in util.list_entries():
+            return render(request, f"encyclopedia/{entry.lower()}.html")
+        else:
             return render(request, "encyclopedia/notexist.html")
 
 
 def select(request, name):
-    try:
+    if name in util.list_entries():
         return render(request, f"encyclopedia/{name.lower()}.html")
-    except:
+    else:
         return render(request, "encyclopedia/notexist.html")
