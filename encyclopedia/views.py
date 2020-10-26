@@ -1,7 +1,8 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+
 from . import util
 
+app_name="wiki"
 
 def index(request):
     return render(request, "encyclopedia/index.html", {
@@ -9,15 +10,17 @@ def index(request):
     })
 
 def search(request):
+    search = []
     if request.method == 'GET':
         entry = request.GET['q']
         for x in util.list_entries():
             if entry.upper() in x.upper():
-                return render(request, "encyclopedia/search.html", {
-                    "entry": x
-                })
-                break
-        return render(request, "encyclopedia/notexist.html")
+                search.append(x)
+
+        return render(request, "encyclopedia/index.html", {
+                "entries": search
+            })
+    return render(request, "encyclopedia/notexist.html")
 
 
 def select(request, name):
@@ -25,3 +28,6 @@ def select(request, name):
         return render(request, f"encyclopedia/{name.lower()}.html")
     else:
         return render(request, "encyclopedia/notexist.html")
+
+def add(request):
+    return render(request, "encyclopedia/newpage.html")
