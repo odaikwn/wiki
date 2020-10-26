@@ -7,7 +7,7 @@
 {% block body %}
     <h1>Creat New Page:</h1>
 
-    <form action="{% url 'wiki:index' %}" method="POST">
+    <form action="/create" method="POST">
         {% csrf_token %}
         <label for="title">Encyclopedia Title:</label></br>
         <input type="text" id="title" name="title" placeholder="Encyclopedia Title"></br>
