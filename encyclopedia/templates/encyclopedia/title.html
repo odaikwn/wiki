@@ -6,4 +6,7 @@
 
 {% block body %}
     {{ content | safe }}
+    <ul>
+        <li><a href="{% url 'wiki:edit' %}">Edit</a></li>
+    </ul>
 {% endblock %}

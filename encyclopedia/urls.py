@@ -9,5 +9,7 @@ urlpatterns = [
     path("search", views.search, name="serachentry"),
     path("add", views.add, name="add"),
     path("create", views.create, name="create"),
+    path("edit", views.edit, name="edit"),
+    path("random", views.random_page, name="random"),
     path("<str:name>", views.select, name="selectentry")
 ]
